@@ -18,17 +18,13 @@ attr_accessor  :current_state, :current_player
 
 def turn(current_move, player_character)
   @current_move = current_move.split(",")
-  @x = @current_move[0].to_i
-  @y = @current_move[1].to_i
+  @y = @current_move[0].to_i - 1
+  @x = @current_move[1].to_i - 1
+
   if @current_state[@x][@y] == "Empty"
     @current_state[@x][@y] = player_character
   else
-
-    puts "Please make a valid move"
-    break
-    @current_move = gets.chomp.split(",")
-    @x = @current_move[0].to_i
-    @y = @current_move[1].to_i
+    return puts "Please make a valid move"
   end
   @current_player = !@current_player
 end
