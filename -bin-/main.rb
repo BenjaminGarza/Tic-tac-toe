@@ -25,4 +25,5 @@ unless game.winner do
   game.show
 end
 
-puts "#{winning_player} is the victor!"
+
+puts "#{} is the victor!"
