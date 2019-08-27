@@ -1,5 +1,14 @@
 # Tic-tac-toe
-Rules: 
+## Running the game
+ Clone the repository using a git manager or the terminal on your ide
+ `git clone https://github.com/BenjaminGarza/Tic-tac-toe.git` 
+
+ Open the file location in the terminal 
+ Using linux terminal run 'ruby main.rb'
+
+ The game will start up and ask for player names
+
+## Rules: 
 Player 1 is X Player 2 is O
 Players must try to get 3 in a row on a  3 by 3 grid
 Players can win by having three across, up and down, or diagonally
