@@ -1,3 +1,4 @@
+load '../lib/logic.rb' 
 
 puts "Enter player one name"
     name_one = gets.chomp
