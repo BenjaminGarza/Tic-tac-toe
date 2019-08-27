@@ -1,4 +1,4 @@
-load '../lib/logic.rb'
+load '../-lib-/logic.rb'
 
 puts "Enter player one name"
     name_one = gets.chomp
@@ -26,7 +26,7 @@ until game.winner || game.emptyCounter == 0 do
 end
 
 if game.emptyCounter == 0
-  return puts "Draw!"
+  puts "Draw!"
 else
   winner = game.current_player ? player1 : player2
   puts "#{winner.name} is the victor!"

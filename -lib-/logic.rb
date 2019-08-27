@@ -53,8 +53,8 @@ attr_accessor  :current_state, :current_player, :winner
 
     def turn(current_move, player_character)
     @current_move = current_move.split(",")
-    @y = @current_move[0].to_i - 1
-    @x = @current_move[1].to_i - 1
+    @x = @current_move[0].to_i - 1
+    @y = @current_move[1].to_i - 1
 
     if @current_state[@x][@y] == "Empty"
         @current_state[@x][@y] = player_character
