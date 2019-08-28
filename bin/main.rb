@@ -1,54 +1,38 @@
 load '../lib/logic.rb'
 
-   def start
-
-    game = Game.new
-
-    game.show
-
-    puts "#{player1.name} VS #{player2.name}"
-
-    return game
-   end
-
-   def create_player
-    puts "Enter player one name"
+  def create_player(character)
+    puts "Enter player #{character} name"
     name_one = gets.chomp
+    return Player.new(character,name_one)
+  end
 
-    puts "Enter player two name"
-    name_two = gets.chomp
+  def start(player1, player2)
+   game = Game.new
+   game.show
+   puts "#{player1.name} VS #{player2.name}"
+   return game
+  end
 
-    player1 = Player.new("X",name_one)
-    player2 = Player.new("O",name_two)
+  def run_game(player1, player2, game)
+   until game.winner || game.board.emptyCounter == 0 do
+     current = game.current_player ? player1 : player2
+     puts "Make a move #{current.name}"
+           current_move = gets.chomp
+           game.turn(current_move, current.character)
+           puts "Please make a valid move" unless game.valid_move
 
-
+     game.show
    end
 
-
-
-   def run_game 
-    until game.winner || game.board.emptyCounter == 0 do
-      current = game.current_player ? player1 : player2
-      puts "Make a move #{current.name}"
-            current_move = gets.chomp
-            game.turn(current_move, current.character)
-            puts "Please make a valid move" unless game.valid_move
-    
-      game.show
-    end
-    
-    if game.board.emptyCounter == 0
-      puts "Draw!"
-    else
-      winner = game.current_player ? player1 : player2
-      puts "#{winner.name} is the victor!"
-    end
+   if game.board.emptyCounter == 0
+     puts "Draw!"
+   else
+     winner = game.current_player ? player1 : player2
+     puts "#{winner.name} is the victor!"
    end
+  end
 
-
-  
-player1 = create_player("X")
-player2 = create_player("Y")
-
-
-
+   player1 = create_player("X")
+   player2 = create_player("O")
+   game = start(player1, player2)
+   run_game(player1, player2, game)
