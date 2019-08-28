@@ -11,6 +11,22 @@ class Player
 class Board
   attr_accessor :current_state
 
+  private
+  def inner_win_check (column_count, i, player_character, winner)
+    count = 0
+    (0..2).each do |j|
+      if  @current_state[i][j] == player_character
+        count += 1
+        column_count[j] +=1
+
+        winner = true if count == 3 || column_count[j] == 3
+      end
+    end
+
+    return winner
+  end
+
+  public
   def initialize
   @current_state = [["1,1","2,1","3,1"],["1,2","2,2","3,2"],["1,3","2,3","3,3"]]
   end
@@ -33,23 +49,14 @@ class Board
     diagonal_count_bottom = 0
 
     (0..2).each do |i|
-      count = 0
+      winner = inner_win_check(column_count, i, player_character, winner)
 
-        (0..2).each do |j|
-          if  @current_state[i][j] == player_character
-            count += 1
-            column_count[j] +=1
-
-            winner = true if count == 3 || column_count[j] == 3
-          end
-        end
       diagonal_count_top += 1 if @current_state[i][i] == player_character
       diagonal_count_bottom += 1 if @current_state[i][2-i] == player_character
       winner = true if diagonal_count_top == 3 || diagonal_count_bottom == 3
     end
     return winner
   end
-
 end
 
 class Game
