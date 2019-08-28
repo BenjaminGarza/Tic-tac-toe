@@ -21,6 +21,7 @@ until game.winner || game.emptyCounter == 0 do
   puts "Make a move #{current.name}"
         current_move = gets.chomp
         game.turn(current_move, current.character)
+        puts "Please make a valid move" unless game.valid_move
 
   game.show
 end

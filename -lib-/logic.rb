@@ -8,12 +8,13 @@ class Player
 
    end
 class Gameboard
-attr_accessor  :current_state, :current_player, :winner
+attr_accessor  :current_state, :current_player, :winner, :valid_move
 
    def initialize
     @current_state = [["1,1","2,1","3,1"],["1,2","2,2","3,2"],["1,3","2,3","3,3"]]
     @current_player = true
     @winner = false
+    @valid_move = true
     end
 
     def win_check(player_character)
@@ -52,16 +53,23 @@ attr_accessor  :current_state, :current_player, :winner
     end
 
     def turn(current_move, player_character)
-    @current_move = current_move.split(",")
-    @x = @current_move[0].to_i - 1
-    @y = @current_move[1].to_i - 1
+      if current_move.match('[1-3],[1-3]').nil?
+        @valid_move = false
+      else
+        @valid_move = true
+        @current_move = current_move.split(",")
+        @x = @current_move[1].to_i - 1
+        @y = @current_move[0].to_i - 1
 
-    if @current_state[@x][@y] != "X" || @current_state[@x][@y] != "O"
-        @current_state[@x][@y] = player_character
-    else
-        return puts "Please make a valid move"
-    end
-    @current_player = !@current_player unless win_check(player_character)
+
+        if @current_state[@x][@y] != "X" || @current_state[@x][@y] != "O"
+            @current_state[@x][@y] = player_character
+            @valid_move = true
+            @current_player = !@current_player unless win_check(player_character)
+        else
+            @valid_move = false
+        end
+        end
     end
 
     def show
@@ -75,5 +83,3 @@ attr_accessor  :current_state, :current_player, :winner
 
     end
     end
-
-    
