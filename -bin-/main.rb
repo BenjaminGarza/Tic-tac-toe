@@ -10,13 +10,13 @@ puts "Enter player two name"
 player1 = Player.new("X",name_one)
 player2 = Player.new("O",name_two)
 
-game = Gameboard.new
+game = Game.new
 
 game.show
 
 puts "#{player1.name} VS #{player2.name}"
 
-until game.winner || game.emptyCounter == 0 do
+until game.winner || game.board.emptyCounter == 0 do
   current = game.current_player ? player1 : player2
   puts "Make a move #{current.name}"
         current_move = gets.chomp
@@ -26,7 +26,7 @@ until game.winner || game.emptyCounter == 0 do
   game.show
 end
 
-if game.emptyCounter == 0
+if game.board.emptyCounter == 0
   puts "Draw!"
 else
   winner = game.current_player ? player1 : player2
