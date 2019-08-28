@@ -11,7 +11,7 @@ class Gameboard
 attr_accessor  :current_state, :current_player, :winner
 
    def initialize
-    @current_state = [["Empty","Empty","Empty"],["Empty","Empty","Empty"],["Empty","Empty","Empty"]]
+    @current_state = [["1,1","2,1","3,1"],["1,2","2,2","3,2"],["1,3","2,3","3,3"]]
     @current_player = true
     @winner = false
     end
@@ -44,7 +44,7 @@ attr_accessor  :current_state, :current_player, :winner
       counter = 0
       @current_state.each do |x|
         x.each do |y|
-          counter += 1 if y == "Empty"
+          counter += 1 unless y == "X" || y == "O"
         end
       end
 
@@ -56,7 +56,7 @@ attr_accessor  :current_state, :current_player, :winner
     @x = @current_move[0].to_i - 1
     @y = @current_move[1].to_i - 1
 
-    if @current_state[@x][@y] == "Empty"
+    if @current_state[@x][@y] != "X" || @current_state[@x][@y] != "O"
         @current_state[@x][@y] = player_character
     else
         return puts "Please make a valid move"
