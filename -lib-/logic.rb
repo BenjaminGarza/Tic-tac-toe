@@ -1,5 +1,5 @@
 class Player
-    attr_accessor :character, :name
+    attr_reader :character, :name
 
     def initialize(character,name)
         @character = character
@@ -27,27 +27,27 @@ class Board
   end
 
   def win_check(player_character)
-    @winner = false
-    @column_count = [0,0,0]
-    @diagonal_count_top = 0
-    @diagonal_count_bottom = 0
+    winner = false
+    column_count = [0,0,0]
+    diagonal_count_top = 0
+    diagonal_count_bottom = 0
 
     (0..2).each do |i|
-      @count = 0
+      count = 0
 
         (0..2).each do |j|
           if  @current_state[i][j] == player_character
-            @count += 1
-            @column_count[j] +=1
+            count += 1
+            column_count[j] +=1
 
-            @winner = true if @count == 3 || @column_count[j] == 3
+            winner = true if count == 3 || column_count[j] == 3
           end
         end
-      @diagonal_count_top += 1 if @current_state[i][i] == player_character
-      @diagonal_count_bottom += 1 if @current_state[i][2-i] == player_character
-      @winner = true if @diagonal_count_top == 3 || @diagonal_count_bottom == 3
+      diagonal_count_top += 1 if @current_state[i][i] == player_character
+      diagonal_count_bottom += 1 if @current_state[i][2-i] == player_character
+      winner = true if diagonal_count_top == 3 || diagonal_count_bottom == 3
     end
-    return @winner
+    return winner
   end
 
 end
