@@ -77,7 +77,7 @@ attr_reader :current_player, :winner, :valid_move, :board
         current_move = current_move.split(",")
         x = current_move[1].to_i - 1
         y = current_move[0].to_i - 1
-          if @board.current_state[x][y] != "X" || @board.current_state[x][y] != "O"
+          if @board.current_state[x][y] != "X" && @board.current_state[x][y] != "O"
               @board.current_state[x][y] = player_character
               @valid_move = true
               @winner = @board.win_check(player_character)
