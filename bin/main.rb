@@ -1,4 +1,4 @@
-load '../lib/logic.rb'
+require_relative '../lib/logic.rb'
 
   def create_player(character)
     puts "Enter player #{character} name"

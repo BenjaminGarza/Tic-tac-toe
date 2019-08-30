@@ -9,7 +9,7 @@ class Player
    end
 
 class Board
-  attr_accessor :current_state
+  attr_reader :current_state
 
   private
   def inner_win_check (column_count, i, player_character, winner)
