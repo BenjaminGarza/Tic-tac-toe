@@ -89,13 +89,14 @@ attr_reader :current_player, :winner, :valid_move, :board
     end
 
     def show
+      str = ""
     (0..2).each do |i|
     (0..2).each do |j|
-        print @board.current_state[i][j]
-        print "\t"
+        str = str +  @board.current_state[i][j]
+        str = str + "\t"
     end
-    print "\n"
+    str = str + "\n"
     end
-
+    return str
     end
     end

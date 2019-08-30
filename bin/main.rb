@@ -8,7 +8,7 @@ require_relative '../lib/logic.rb'
 
   def start(player1, player2)
    game = Game.new
-   game.show
+   puts game.show
    puts "#{player1.name} VS #{player2.name}"
    return game
   end
@@ -21,7 +21,7 @@ require_relative '../lib/logic.rb'
            game.turn(current_move, current.character)
            puts "Please make a valid move" unless game.valid_move
 
-     game.show
+     puts game.show
    end
 
    if game.board.emptyCounter == 0
