@@ -11,7 +11,7 @@ class Player
  end
 
 class Board
-  attr_reader :current_state
+  attr_accessor :current_state
 
   private
   def inner_win_check (column_count, index_i, player_character, winner)
@@ -20,15 +20,13 @@ class Board
       if  @current_state[index_i][j] == player_character
         count += 1
         column_count[j] +=1
-
-      count += 1
-      column_count[j] += 1
-
       winner = true if count == 3 || column_count[j] == 3
+      end
     end
 
     winner
   end
+
 
   public
 
@@ -40,7 +38,7 @@ class Board
     counter = 0
     @current_state.each do |x|
       x.each do |y|
-        counter += 1 unless ["X","Y"].include?(y)
+        counter += 1 unless ["X","O"].include?(y)
       end
     end
 
@@ -89,21 +87,9 @@ class Game
         @current_player = !@current_player unless @winner
       else
         @valid_move = false
-      else
-        @valid_move = true
-        current_move = current_move.split(",")
-        x = current_move[1].to_i - 1
-        y = current_move[0].to_i - 1
-          if @board.current_state[x][y] != "X" && @board.current_state[x][y] != "O"
-              @board.current_state[x][y] = player_character
-              @valid_move = true
-              @winner = @board.win_check(player_character)
-              @current_player = !@current_player unless @winner
-          else
-              @valid_move = false
-           end
        end
      end
+   end
 
-    
+
   end
