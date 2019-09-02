@@ -3,30 +3,29 @@
 class Player
   attr_reader :character, :name
 
-    def initialize(character,name)
-        @character = character
-        @name = name
-    end
-
+  def initialize(character, name)
+    @character = character
+    @name = name
+  end
  end
 
 class Board
   attr_reader :current_state
 
   private
-  def inner_win_check (column_count, index_i, player_character, winner)
+
+  def inner_win_check(column_count, index_i, player_character, winner)
     count = 0
     (0..2).each do |j|
-      if  @current_state[index_i][j] == player_character
-        count += 1
-        column_count[j] +=1
+      next unless @current_state[index_i][j] == player_character
+
+      count += 1
+      column_count[j] += 1
       winner = true if count == 3 || column_count[j] == 3
-      end
     end
 
     winner
   end
-
 
   public
 
@@ -38,7 +37,7 @@ class Board
     counter = 0
     @current_state.each do |x|
       x.each do |y|
-        counter += 1 unless ["X","O"].include?(y)
+        counter += 1 unless %w[X O].include?(y)
       end
     end
 
@@ -55,7 +54,7 @@ class Board
       winner = inner_win_check(column_count, index_i, player_character, winner)
 
       diagonal_count_top += 1 if @current_state[index_i][index_i] == player_character
-      diagonal_count_bottom += 1 if @current_state[index_i][2-index_i] == player_character
+      diagonal_count_bottom += 1 if @current_state[index_i][2 - index_i] == player_character
       winner = true if diagonal_count_top == 3 || diagonal_count_bottom == 3
     end
     winner
@@ -90,6 +89,4 @@ class Game
        end
      end
    end
-
-
   end
