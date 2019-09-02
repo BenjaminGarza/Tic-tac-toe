@@ -11,7 +11,7 @@ class Player
  end
 
 class Board
-  attr_accessor :current_state
+  attr_reader :current_state
 
   private
   def inner_win_check (column_count, index_i, player_character, winner)
@@ -73,7 +73,7 @@ class Game
    end
 
   def turn(current_move, player_character)
-    if current_move.match('[1-3],[1-3]').nil?
+    if current_move.match('^[1-3],[1-3]$').nil?
       @valid_move = false
     else
       @valid_move = true
