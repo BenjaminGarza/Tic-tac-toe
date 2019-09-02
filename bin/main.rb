@@ -26,7 +26,7 @@ require_relative '../lib/logic.rb'
   end
 
   def run_game(player1, player2, game)
-   until game.winner || game.board.emptyCounter == 0 do
+   until game.winner || game.board.empty_counter == 0 do
      current = game.current_player ? player1 : player2
      puts "Make a move #{current.name}"
            current_move = gets.chomp
@@ -39,7 +39,7 @@ require_relative '../lib/logic.rb'
    if game.board.win_check(current.character) 
     puts "#{current.name} is the victor!"
    else
-    game.board.emptyCounter == 0
+    game.board.empty_counter == 0
     puts "Draw!"
      
    end

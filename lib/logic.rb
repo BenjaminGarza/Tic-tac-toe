@@ -6,16 +6,16 @@ class Player
         @name = name
     end
 
-   end
+ end
 
 class Board
   attr_reader :current_state
 
   private
-  def inner_win_check (column_count, i, player_character, winner)
+  def inner_win_check (column_count, index_i, player_character, winner)
     count = 0
     (0..2).each do |j|
-      if  @current_state[i][j] == player_character
+      if  @current_state[index_i][j] == player_character
         count += 1
         column_count[j] +=1
 
@@ -31,11 +31,11 @@ class Board
   @current_state = [["1,1","2,1","3,1"],["1,2","2,2","3,2"],["1,3","2,3","3,3"]]
   end
 
-  def emptyCounter
+  def empty_counter
     counter = 0
     @current_state.each do |x|
       x.each do |y|
-        counter += 1 unless y == "X" || y == "O"
+        counter += 1 unless ["X","Y"].include?(y)
       end
     end
 
@@ -48,11 +48,11 @@ class Board
     diagonal_count_top = 0
     diagonal_count_bottom = 0
 
-    (0..2).each do |i|
-      winner = inner_win_check(column_count, i, player_character, winner)
+    (0..2).each do |index_i|
+      winner = inner_win_check(column_count, index_i, player_character, winner)
 
-      diagonal_count_top += 1 if @current_state[i][i] == player_character
-      diagonal_count_bottom += 1 if @current_state[i][2-i] == player_character
+      diagonal_count_top += 1 if @current_state[index_i][index_i] == player_character
+      diagonal_count_bottom += 1 if @current_state[index_i][2-index_i] == player_character
       winner = true if diagonal_count_top == 3 || diagonal_count_bottom == 3
     end
     return winner
@@ -67,7 +67,7 @@ attr_reader :current_player, :winner, :valid_move, :board
     @current_player = true
     @winner = false
     @valid_move = true
-    end
+   end
 
     def turn(current_move, player_character)
       if current_move.match('[1-3],[1-3]').nil?
@@ -84,9 +84,9 @@ attr_reader :current_player, :winner, :valid_move, :board
               @current_player = !@current_player unless @winner
           else
               @valid_move = false
-          end
-        end
-    end
+           end
+       end
+     end
 
     
-    end
+  end
