@@ -1,3 +1,4 @@
+
 require_relative '../lib/logic.rb'
 
 def create_player(character)
@@ -49,3 +50,5 @@ player1 = create_player("X")
 player2 = create_player("O")
 game = start(player1, player2)
 run_game(player1, player2, game)
+
+

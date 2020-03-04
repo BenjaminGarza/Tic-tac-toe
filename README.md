@@ -22,5 +22,6 @@ For example: 1,1 will put the players character in the upper left quadrant
 
 Good luck, have fun!
 
-Authors: [Miguel Prada](https://github.com/mapra99), [Benjamin Garza](https://github.com/BenjaminGarza) 
+Language: Ruby
 
+Authors: [Miguel Prada](https://github.com/mapra99), [Benjamin Garza](https://github.com/BenjaminGarza) 
